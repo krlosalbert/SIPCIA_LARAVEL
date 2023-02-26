@@ -26,7 +26,7 @@ Route::get('/viewUsers','App\Http\Controllers\UserController@ReadJoin');
     Route::post('/Create','App\Http\Controllers\UserController@Create');
 
     Route::get('/FormUsers', function () {
-        return view('Users.Form');
+        return view('auth.register');
     });
     
     Route::get('/ReadUpdate/{id}','App\Http\Controllers\UserController@ReadUpdate')->name('route.ReadUpdate');
@@ -34,3 +34,9 @@ Route::get('/viewUsers','App\Http\Controllers\UserController@ReadJoin');
     Route::put('/Update/{id}','App\Http\Controllers\UserController@Update')->name('route.Update');
     
     Route::delete('DeleteUsers/{id}','App\Http\Controllers\UserController@destroy')->name('DeleteUsers.destroy');
+
+/*     Route::get('/register', [App\Http\Controllers\Auth\RegisterController::class, 'showRegistrationForm']);
+    Route::post('/register', [App\Http\Controllers\Auth\RegisterController::class, 'register']); */
+
+    Route::get('/register', 'App\Http\Controllers\AdminRegistrationController@showRegistrationForm');
+    Route::post('/register', 'App\Http\Controllers\AdminRegistrationController@register')->name('register');
