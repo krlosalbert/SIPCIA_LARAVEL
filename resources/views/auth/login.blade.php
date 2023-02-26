@@ -8,7 +8,7 @@
             <div class="card mb-3" style="max-width: 540px;">
                 <div class="row g-0">
                     <div class="col-md-4">
-                        </br></br></br></br>
+                        </br>
                         <img src="{{ asset('Images/logo_2.jpg') }}" class="" alt="Imagen">
                     </div>
                     <div class="col-md-8">
@@ -55,7 +55,7 @@
 
                                 <div class="col-md-5offset-md-4">
                                     <button type="submit" class="btn btn-primary">
-                                        {{ __('Login') }}
+                                        {{ __('Entrar') }}
                                     </button>
 
                                     @if (Route::has('password.request'))
