@@ -21,7 +21,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/viewUsers','App\Http\Controllers\UserController@ReadJoin');
+Route::get('/ViewUsers','App\Http\Controllers\UserController@ReadJoin')->name('ViewUsers');
     
     Route::post('/Create','App\Http\Controllers\UserController@Create');
 
@@ -39,4 +39,4 @@ Route::get('/viewUsers','App\Http\Controllers\UserController@ReadJoin');
     Route::post('/register', [App\Http\Controllers\Auth\RegisterController::class, 'register']); */
 
     Route::get('/register', 'App\Http\Controllers\AdminRegistrationController@showRegistrationForm');
-    Route::post('/register', 'App\Http\Controllers\AdminRegistrationController@register')->name('register');
+    Route::post('/register', 'App\Http\Controllers\AdminRegistrationController@store')->name('register')->middleware('auth');;

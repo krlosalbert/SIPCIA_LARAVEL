@@ -1,5 +1,5 @@
 //llamo los campos por sus id y le asigno variables
-const userCedula = document.getElementById("cedula");
+/*const userCedula = document.getElementById("cedula");
 const userName = document.getElementById("name");
 const userLastName = document.getElementById("lastName");
 const userEmail = document.getElementById("email");
@@ -196,10 +196,14 @@ $('#form').submit(function(e){
     if (errores.length !== 0) {
         pintarMensajeError(errores);
         return;
-    }else{
+    }else{*/
+
+   /* $('.btn-register').click(function (e) {
+        e.preventDefault();
         swal("Listo!", "Usuario Guardado con Exito!", "success")
-        .then((value) => {
-            this.submit();
-        }) 
-    }
-});
+            .then((value) => {
+                $(this).submit();
+            }) 
+    });*/
+ //   }
+//});

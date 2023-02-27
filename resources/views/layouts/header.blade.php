@@ -57,7 +57,7 @@
                         <a href="/FormUsers">Nuevo</a>
                         </li>
                         <li>
-                        <a href="/viewUsers">Consultar</a>
+                        <a href="{{ route('ViewUsers') }}">Consultar</a>
                         <li>
                         <a href="?action=/viewRole">Rol</a>
                         </li>

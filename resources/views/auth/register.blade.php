@@ -5,7 +5,7 @@
     <div class="row justify-content-center" >
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header" id="head_users">{{ __('Registrate') }}</div>
+                <div class="card-header" id="head_users">{{ __('Registrar Usuarios') }}</div>
 
                 <div class="card-body" id="base">
                     <form method="POST" action="{{ route('register') }}">
@@ -112,13 +112,14 @@
 
                         <div class="row mb-0">
                             <div>
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Registrarse') }}
+                                <button type="submit" class="btn btn-primary btn-register">
+                                    {{ __('Guardar') }}
                                 </button>
                             </div>
                         </div>
                     </form>
                 </div>
+                <script src="{{ asset('js/ScriptUsers/formUsers.js') }}"></script>
             </div>
         </div>
     </div>

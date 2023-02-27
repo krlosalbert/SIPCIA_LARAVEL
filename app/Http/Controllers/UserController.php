@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Role;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Pagination\Paginator; 
 
 
 class UserController extends Controller
@@ -28,6 +29,7 @@ class UserController extends Controller
      */
 
     public function View(){
+
         return view('Users.Form');
     }
 
@@ -51,15 +53,19 @@ class UserController extends Controller
     public function Read(Request $request){
         $user = User::all();
 
-        return view('Users.View', ['Users'=>$user], ['x'=>0]);
+        return view('Users.View', compact('Users'), ['x'=>0]);
 
     }
 
     public function ReadJoin(Request $request){
-        $user = User::join("tblrole", "tblrole.RoleId", "=", "users.role")
+        $users = User::join("tblrole", "tblrole.RoleId", "=", "users.role")
         ->select("*")->get();
 
-        return view('Users.View', ['Users'=>$user], ['x'=>0]);
+        //dd($users);
+        $users = User::paginate(3);
+
+        
+        return view('ViewUsers', compact('users'), ['x'=>0]);
     }
 
     public function ReadUpdate(Request $request){

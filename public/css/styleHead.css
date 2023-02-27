@@ -211,3 +211,6 @@ a.article:hover {
     text-align: center;
 }
 
+.pagination li a {
+    background-color:    #f69c16;
+}

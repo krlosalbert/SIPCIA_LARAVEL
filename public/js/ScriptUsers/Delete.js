@@ -22,7 +22,7 @@ $('.btn-delete').click(function (e) {
                     type: 'DELETE',
                     success: function (data) {
                         if (data.success) {
-                            window.location.replace('/viewUsers'); 
+                            window.location.replace('/ViewUsers'); 
                         } else {
                             swal('Error!','The record could not be deleted.','error');
                         }

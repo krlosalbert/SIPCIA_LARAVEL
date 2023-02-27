@@ -6,6 +6,12 @@
         <div class="card-header" id="head_users">
             <h3>Usuarios<h3>
         </div>
+<!--         @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif -->
+
         <table class="table">
             <thead class="thead-dark">
                 <tr>
@@ -20,7 +26,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($Users as $user)
+                @foreach ($users as $user)
                 <tr>
                     <td>{{ $x += 1; }}</td>
                     <td class="text-center">{{ $user->name }}</td>
@@ -54,25 +60,34 @@
                     <td colspan="6"></td>
                     <td colspan="2">
                         <ul class="d-flex list-inline text-end">
-                            <li><a href="?action=/viewUsers&pages=<?php //echo 1; ?>" class="btn p-2">|<</a></li>
-                            <li><a href="?action=/viewUsers&pages=<?php// echo $page[1]-1; ?>" class="btn p-2"><<</a></li>
-                            <?php 
-/*                                 for($i=1; $i <= $page[3]; $i++){
-                                    if($i == $page[1]){
-                                        echo '<li><a href="?action=/viewUsers&pages='.$i.'" class=" btn btn-secondary p-2">'.$i.'</a></li>';
-                                    }else{
-                                        echo '<li><a href="?action=/viewUsers&pages='.$i.'" class="btn p-2">'.$i.'</a></li>';
-                                    }
-                                } */
-                            ?>
-                            <li><a href="?action=/viewUsers&pages=<?php //echo $page[1]+1; ?>" class="btn p-2">>></a></li>
-                            <li><a href="?action=/viewUsers&pages=<?php //echo $page[3]; ?>" class="btn p-2">>|</a></li>
+                            {{ $users->links('pagination::bootstrap-4') }}
                         </ul>
                     </td>
                 </tr> <!-- Aqui termina el paginador -->
             </tbody>
         </table>
+        <!-- Aqui empieza el modal del mensaje de alerta -->
+        <div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="alertModalLabel">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div id="alertMessage" class="alert alert-success">
+
+                </div>
+            </div>
+        </div>
+
         <script src="{{ asset('js/ScriptUsers/Delete.js') }}"></script>
+        @if(session('success'))
+            <script>
+/*                 $(function() {
+                $('#alertMessage').text('{{ session('success') }}');
+                $('#alertModal').modal('show');
+                }); */
+
+                swal("Listo!", "Usuario Guardado con Exito!", "success")
+                    .then((value) => {
+                }) 
+            </script>
+        @endif
     </div>
 </div>
 @endsection
