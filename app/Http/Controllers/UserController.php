@@ -28,72 +28,30 @@ class UserController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
 
-    public function View(){
+    public function FromUsers(){
+        // Obtener todos los roles
+        $roles = Role::all();
 
-        return view('Users.Form');
-    }
-
-    public function Create(Request $request){
-        $user = new User();
-
-        $user -> UserName = $request -> UserName;
-        $user -> UserLastName = $request -> UserLastName;
-        $user -> UserAddres = $request -> UserAddres;
-        $user -> UserPhone = $request -> UserPhone;
-        $user -> UserEmail = $request -> UserEmail;
-        $user -> UserIdCard = $request -> UserIdCard;
-        $user -> UserPassword = Hash::make($request->UserPassword ); // Encriptar la contraseña con la función bcrypt;
-        $user -> RoleId = $request -> RoleId;
-        $user -> save();
-
-        return redirect('/viewUsers');
-
-    }
-
-    public function Read(Request $request){
-        $user = User::all();
-
-        return view('Users.View', compact('Users'), ['x'=>0]);
-
+        return view('auth.register', compact('roles'));
     }
 
     public function ReadJoin(Request $request){
-        $users = User::join("tblrole", "tblrole.RoleId", "=", "users.role")
-        ->select("*")->get();
+        $users_with_roles = User::select('users.*', 'roles.name as role_name')
+        ->join('roles', 'users.role', '=', 'roles.id')
+        ->paginate(3);
 
-        //dd($users);
-        $users = User::paginate(3);
-
-        
-        return view('ViewUsers', compact('users'), ['x'=>0]);
+        //dd( $users_with_roles );
+        return view('Users.View', compact('users_with_roles'), ['x'=>0]);
     }
 
-    public function ReadUpdate(Request $request){
-            $id = $request;
-/*          $user = User::join('tblrole', 'tbluser.RoleId', '=', 'tblrole.RoleId')
-                    ->select('tbluser.*', 'tblrole.*') */
-            $user = User::join("tblrole", "tbluser.RoleId", "=", "tblrole.RoleId")
-                    ->select('tbluser.UserName', 'tbluser.UserIdCard', 'tblrole.RoleDescription')                    
-                    ->where('tbluser.UserId', 11)
-                    ->first();
-        $role = Role::all();
-
-        if($user) {
-            // La variable $user no es null, se puede acceder a sus propiedades
-            return view('Users.Update', compact('user'), ['Users'=>$user], ['Roles'=>$role]); 
-        } else {
-            // La variable $user es null, no se puede acceder a sus propiedades
-            return redirect('/viewUsers');
-        }
-        
-    }
-
-    public function ReadUpdate2(Request $request){
-        $id = $request;
+    public function ReadUpdate($id){
         $user = User::findOrFail($id);
 
-        $Role = Role::all();
-        return view('Users.Update', ['Users'=>$user], ['Roles'=>$Role]);
+        // Obtener todos los roles
+        $roles = Role::all();
+        
+        return view('Users.Update', compact('user', 'roles'));
+    
     }
 
     public function Update(Request $request, $id){
@@ -101,7 +59,7 @@ class UserController extends Controller
         $user = User::find($id);
         $user->fill($request->all());
         $user->save();
-        return redirect()->route('ruta.index');
+        return redirect()->route('ReadUpdate', $id)->with('success', 'Usuario Actualizado con exito');
     }
 
     public function destroy($id){

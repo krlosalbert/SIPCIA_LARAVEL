@@ -7,7 +7,22 @@ use Illuminate\Database\Eloquent\Model;
 
 class Role extends Model
 {
-    protected $table = 'tblrole';
-    protected $primaryKey = 'RoleId';
+    protected $table = 'roles';
+    protected $primaryKey = 'id';
     use HasFactory;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'name',
+
+    ];
+
+    public function users()
+    {
+        return $this->hasMany(User::class, 'roles');
+    }
 }

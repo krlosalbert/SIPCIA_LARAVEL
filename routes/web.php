@@ -12,31 +12,24 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+//ruta para el login
 Route::get('/', function () {
     return view('auth.login');
 });
 
 Auth::routes();
-
+//ruta para la pagina inicial
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
+//ruta para ver los usuarios registrados
 Route::get('/ViewUsers','App\Http\Controllers\UserController@ReadJoin')->name('ViewUsers');
-    
-    Route::post('/Create','App\Http\Controllers\UserController@Create');
-
-    Route::get('/FormUsers', function () {
-        return view('auth.register');
-    });
-    
-    Route::get('/ReadUpdate/{id}','App\Http\Controllers\UserController@ReadUpdate')->name('route.ReadUpdate');
-    
-    Route::put('/Update/{id}','App\Http\Controllers\UserController@Update')->name('route.Update');
-    
-    Route::delete('DeleteUsers/{id}','App\Http\Controllers\UserController@destroy')->name('DeleteUsers.destroy');
-
-/*     Route::get('/register', [App\Http\Controllers\Auth\RegisterController::class, 'showRegistrationForm']);
-    Route::post('/register', [App\Http\Controllers\Auth\RegisterController::class, 'register']); */
-
-    Route::get('/register', 'App\Http\Controllers\AdminRegistrationController@showRegistrationForm');
-    Route::post('/register', 'App\Http\Controllers\AdminRegistrationController@store')->name('register')->middleware('auth');;
+//ruta para el formulario de registro de usuarios
+Route::get('/FormUsers','App\Http\Controllers\UserController@FromUsers');
+//ruta para registrar usuarios
+Route::get('/register', 'App\Http\Controllers\AdminRegistrationController@showRegistrationForm');
+Route::post('/register', 'App\Http\Controllers\AdminRegistrationController@store')->name('register')->middleware('auth');
+//ruta para el formulario de edicion de usuarios
+Route::get('/ReadUpdate/{id}','App\Http\Controllers\UserController@ReadUpdate')->name('ReadUpdate');
+//ruta para editar a los usuarios
+Route::put('/Update/{id}','App\Http\Controllers\UserController@Update')->name('Update');
+//ruta para eliminar usuarios
+Route::delete('DeleteUsers/{id}','App\Http\Controllers\UserController@destroy')->name('DeleteUsers.destroy');

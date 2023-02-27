@@ -51,5 +51,10 @@ class User extends Authenticatable
         return $this->hasMany(Post::class);
     }
 
+    public function Role(){
+        return $this->belongsTo(Role::Class, 'role');
+    }
+
+    
      
 }

@@ -6,12 +6,6 @@
         <div class="card-header" id="head_users">
             <h3>Usuarios<h3>
         </div>
-<!--         @if(session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif -->
-
         <table class="table">
             <thead class="thead-dark">
                 <tr>
@@ -26,7 +20,8 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($users as $user)
+                <!-- {{ var_dump($users_with_roles) }} esto es para imprimir los resultados de un array--> 
+                @foreach ($users_with_roles as $user)
                 <tr>
                     <td>{{ $x += 1; }}</td>
                     <td class="text-center">{{ $user->name }}</td>
@@ -34,10 +29,10 @@
                     <td class="text-center">{{ $user->email }}</td>
                     <td class="text-center">{{ $user->phone }}</td>
                     <td class="text-center">{{ $user->addres }}</td>
-                    <td class="text-center">{{ $user->RoleDescription }}</td>
+                    <td class="text-center">{{ $user->role_name }}</td>
                     <td class="text-center">
                     <!-- Button trigger modal -->
-                     <a href="/ReadUpdate?id={{ $user->id }}" type="button" class="btn btn-warning">
+                     <a href=" {{ route('ReadUpdate', $user->id) }}" type="button" class="btn btn-warning">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
                             <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
                         </svg>
@@ -60,29 +55,16 @@
                     <td colspan="6"></td>
                     <td colspan="2">
                         <ul class="d-flex list-inline text-end">
-                            {{ $users->links('pagination::bootstrap-4') }}
+                            {{ $users_with_roles->links('pagination::bootstrap-4') }}
                         </ul>
                     </td>
                 </tr> <!-- Aqui termina el paginador -->
             </tbody>
         </table>
-        <!-- Aqui empieza el modal del mensaje de alerta -->
-        <div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="alertModalLabel">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div id="alertMessage" class="alert alert-success">
-
-                </div>
-            </div>
-        </div>
-
+        <!-- Aqui empieza el script del mensaje de alerta -->
         <script src="{{ asset('js/ScriptUsers/Delete.js') }}"></script>
         @if(session('success'))
             <script>
-/*                 $(function() {
-                $('#alertMessage').text('{{ session('success') }}');
-                $('#alertModal').modal('show');
-                }); */
-
                 swal("Listo!", "Usuario Guardado con Exito!", "success")
                     .then((value) => {
                 }) 

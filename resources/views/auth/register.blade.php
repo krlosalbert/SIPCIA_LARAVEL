@@ -74,7 +74,11 @@
                             <div class="d-inline w-100 p-3">
                                 <label for="role">{{ __('Rol') }}</label>
                                 <select name="role" id="role" class="form-control">
-                                    <option value="1">Seleccione</option>
+                                    <option value="0">Seleccione</option>
+                                    @foreach($roles as $role)
+                                        <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                    @endforeach
+                        </select>
                                 </select>
     
                                 @error('role')
@@ -113,7 +117,7 @@
                         <div class="row mb-0">
                             <div>
                                 <button type="submit" class="btn btn-primary btn-register">
-                                    {{ __('Guardar') }}
+                                   <b> {{ __('Guardar') }} </b>
                                 </button>
                             </div>
                         </div>
