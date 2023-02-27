@@ -59,7 +59,7 @@
                         <li>
                         <a href="{{ route('ViewUsers') }}">Consultar</a>
                         <li>
-                        <a href="?action=/viewRole">Rol</a>
+                        <a href="{{ route('ViewRoles') }}">Rol</a>
                         </li>
                         </li>
                     </ul>

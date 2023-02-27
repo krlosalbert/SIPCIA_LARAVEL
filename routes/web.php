@@ -33,3 +33,7 @@ Route::get('/ReadUpdate/{id}','App\Http\Controllers\UserController@ReadUpdate')-
 Route::put('/Update/{id}','App\Http\Controllers\UserController@Update')->name('Update');
 //ruta para eliminar usuarios
 Route::delete('DeleteUsers/{id}','App\Http\Controllers\UserController@destroy')->name('DeleteUsers.destroy');
+//ruta para ver los usuarios registrados
+Route::get('/ViewRoles','App\Http\Controllers\RoleController@View')->name('ViewRoles');
+//ruta para eliminar roles
+Route::delete('DeleteRole/{id}','App\Http\Controllers\RoleController@destroy')->name('DeleteRole.destroy');

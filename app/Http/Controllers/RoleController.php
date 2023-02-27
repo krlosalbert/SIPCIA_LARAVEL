@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Role;
 
 class RoleController extends Controller
 {
@@ -21,4 +22,19 @@ class RoleController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+
+    public function View()
+    {
+        $roles = Role::all();
+        return view('/Role.View', compact('roles'), ['x'=>0]);
+    }
+
+    public function destroy($id){
+
+        $role = Role::findOrFail($id);
+        if ($role->delete()) {
+            return response()->json(['success' => true]);
+        }
+        return response()->json(['success' => false]);
+    }
 }

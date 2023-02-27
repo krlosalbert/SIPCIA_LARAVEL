@@ -1,4 +1,6 @@
-function DeleteRole(x){
+$('.btn-delete').click(function (e) {
+        e.preventDefault();
+        var id = $(this).data('id');
    
     swal({
         title: "¿Estas Seguro?",
@@ -12,8 +14,23 @@ function DeleteRole(x){
 
             swal("Listo!", "Rol Eliminado con Exito!", "success")
             .then((value) => {
-                window.location.replace('?action=/DeleteRole&id='+x);
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                 });
+                $.ajax({
+                    url: 'DeleteRole/' + id,
+                    type: 'DELETE',
+                    success: function (data) {
+                        if (data.success) {
+                            window.location.replace('/ViewRoles'); 
+                        } else {
+                            swal('Error!','The record could not be deleted.','error');
+                        }
+                    }
+                });
             }) 
         }
     });
-}
+});
