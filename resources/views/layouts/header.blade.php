@@ -72,10 +72,10 @@
                     </a>
                     <ul class="dropdown-menu" role="menu">
                         <li>
-                        <a href="#">Nuevo</a>
+                        <a href="{{ route('NewProducts') }}">Nuevo</a>
                         </li>
                         <li>
-                        <a href="../Products/ReadProducts.php">Consultar</a>
+                        <a href="{{ route('ViewProducts') }}">Consultar</a>
                         </li>
                     </ul>
                     </li>
@@ -88,10 +88,10 @@
                     </a>
                     <ul class="dropdown-menu" role="menu">
                         <li>
-                        <a href="#">Nuevo</a>
+                        <a href="{{ route('NewSuppliers') }}">Nuevo</a>
                         </li>
                         <li>
-                        <a href="#">Consultar</a>
+                        <a href="{{ route('ViewSuppliers') }}">Consultar</a>
                         </li>
                     </ul>
                     </li>
