@@ -30,6 +30,32 @@ class SuppliersController extends Controller
         return view('Suppliers.Form');
     }
 
+    protected function Create(Request $request)
+    {
+        
+        $suppliers = $request->validate([
+            'nit' => ['required', 'integer'],
+            'name' => ['required', 'string'],
+            'city' => ['required', 'string'],
+            'addres' => ['required', 'string'],
+            'phone' => ['required', 'integer'],
+            'email' => ['required', 'email'],
+        ]);
+        
+        // Crear un nuevo proveedor
+        $supplier = Suppliers::create([
+            'nit' => $suppliers['nit'],
+            'name' => $suppliers['name'],
+            'city' => $suppliers['city'],
+            'addres' => $suppliers['addres'],
+            'phone' => $suppliers['phone'],
+            'email' => $suppliers['email'],
+        ]);
+        
+        // Redireccionar a la vista de proveedores
+        return redirect()->route('ViewSuppliers')->with('success', 'Proveedor Guardado  con exito');
+    }
+
 
     public function ReadUpdate($id){
         $supplier = Suppliers::findOrFail($id);

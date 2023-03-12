@@ -46,7 +46,7 @@ class ProductsController extends Controller
         ]);
     
         //dd($roles);
-        // Crear un nuevo usuario
+        // Crear un nuevo producto
         $product = Products::create([
             'name' => $products['name'],
             'brand' => $products['brand'],
@@ -54,7 +54,7 @@ class ProductsController extends Controller
             'price' => $products['price'],
         ]);
         
-        // Redireccionar a la vista de roles
+        // Redireccionar a la vista de productos
         return redirect()->route('ViewProducts')->with('success', 'Producto Guardado  con exito');
     }
 

@@ -65,11 +65,11 @@ Route::put('/UpdateProducts/{id}','App\Http\Controllers\ProductsController@Updat
 Route::delete('DeleteProducts/{id}','App\Http\Controllers\ProductsController@destroy')->name('DeleteProducts');
 
 //SUPPLIERS
-//ruta para ver los supplier registrados
+//ruta para ver los suppliers registrados
 Route::get('/ViewSuppliers','App\Http\Controllers\SuppliersController@View')->name('ViewSuppliers');
-//ruta para ver el formulario de creacion de un nuevo producto
+//ruta para ver el formulario de creacion de un nuevo supplier
 Route::get('/NewSuppliers','App\Http\Controllers\SuppliersController@Form')->name('NewSuppliers');
-//ruta para crear un nuevo producto
+//ruta para crear un nuevo supplier
 Route::post('/CreateSuppliers','App\Http\Controllers\SuppliersController@Create')->name('CreateSuppliers');
 //ruta para el formulario de edicion de supplier
 Route::get('/ReadUpdateSuppliers/{id}','App\Http\Controllers\SuppliersController@ReadUpdate')->name('ReadUpdateSuppliers');

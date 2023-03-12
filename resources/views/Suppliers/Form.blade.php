@@ -13,7 +13,7 @@
                     <div class="d-inline w-100 p-3">
                 
                         <label for="nit">{{ __('NIT') }}</label>
-                        <input id="nit" type="text" class="form-control @error('nit') is-invalid @enderror" name="nit" required autocomplete="nit" autofocus placeholder="Escribe el NIT" >
+                        <input id="nit" type="number" class="form-control @error('nit') is-invalid @enderror" name="nit" required autocomplete="nit" autofocus placeholder="Escribe el NIT" value="{{ old('nit') }}">
 
                         @error('nit')
                             <span class="invalid-feedback" role="alert">
@@ -24,7 +24,7 @@
                 
                     <div class="d-inline w-100 p-3">
                         <label for="name">{{ __('Razon social') }}</label>
-                        <input type="text" class="form-control  @error('name') is-invalid @enderror" name="name"  required autocomplete="name" placeholder="Escribe la razon social" />
+                        <input type="text" class="form-control  @error('name') is-invalid @enderror" name="name"  required autocomplete="name" placeholder="Escribe la razon social" value="{{ old('name') }}" />
                             
                             @error('name')
                                 <span class="invalid-feedback" role="alert">
@@ -35,7 +35,7 @@
 
                     <div class="d-inline w-100 p-3">
                         <label for="city">{{ __('Ciudad') }}</label>
-                        <input id="city" type="text" class="form-control @error('city') is-invalid @enderror" name="city"  required autocomplete="city" placeholder="Escribe la ciudad" >
+                        <input id="city" type="text" class="form-control @error('city') is-invalid @enderror" name="city"  required autocomplete="city" placeholder="Escribe la ciudad" value="{{ old('city') }}">
 
                             @error('city')
                                 <span class="invalid-feedback" role="alert">
@@ -49,7 +49,7 @@
 
                     <div class="d-inline w-100 p-3">
                         <label for="addres">{{ __('Direccion') }}</label>
-                        <input type="text" class="form-control @error('addres') is-invalid @enderror" name="addres"  placeholder="Escribe su direccion" required autocomplete="addres"/>
+                        <input type="text" class="form-control @error('addres') is-invalid @enderror" name="addres"  placeholder="Escribe su direccion" required autocomplete="addres" value="{{ old('addres') }}"/>
 
                         @error('addres')
                             <span class="invalid-feedback" role="alert">
@@ -60,7 +60,7 @@
                 
                     <div class="d-inline w-100 p-3">
                         <label for="email">{{ __('Email') }}</label>
-                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email"  required autocomplete="email" placeholder="Digite correo electronico">
+                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email"  required autocomplete="email" placeholder="Digite correo electronico" value="{{ old('email') }}">
     
                         @error('email')
                             <span class="invalid-feedback" role="alert">
@@ -85,7 +85,7 @@
                 <script>
                     swal("Listo!", "Proveedor Actualizado con Exito!", "success")
                         .then((value) => {
-                            window.location.replace('/ViewUsers'); 
+                            window.location.replace('/ViewSuppliers'); 
                     });
                 </script>
             @endif
