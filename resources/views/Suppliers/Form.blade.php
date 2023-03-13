@@ -59,8 +59,8 @@
                     </div>
                 
                     <div class="d-inline w-100 p-3">
-                        <label for="email">{{ __('Email') }}</label>
-                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email"  required autocomplete="email" placeholder="Digite correo electronico" value="{{ old('email') }}">
+                        <label for="phone">{{ __('Telefono') }}</label>
+                        <input id="phone" type="number" class="form-control @error('phone') is-invalid @enderror" name="phone"  required autocomplete="phone" placeholder="Digite el numero de telefono" value="{{ old('phone') }}">
     
                         @error('email')
                             <span class="invalid-feedback" role="alert">
@@ -69,7 +69,14 @@
                         @enderror
                     </div>
                     <div class="d-inline w-100 p-3">
-
+                        <label for="email">{{ __('Email') }}</label>
+                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email"  required autocomplete="email" placeholder="Digite correo electronico" value="{{ old('email') }}">
+    
+                        @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                 </div>
 

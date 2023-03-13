@@ -77,3 +77,7 @@ Route::get('/ReadUpdateSuppliers/{id}','App\Http\Controllers\SuppliersController
 Route::put('/UpdateSuppliers/{id}','App\Http\Controllers\SuppliersController@Update')->name('UpdateSuppliers');
 //ruta para eliminar supplier
 Route::delete('DeleteSuppliers/{id}','App\Http\Controllers\SuppliersController@destroy')->name('DeleteSuppliers');
+
+//Entries
+//ruta para registrar una nueva entrada
+Route::get('/NewEntries','App\Http\Controllers\EntriesController@New')->name('NewEntries');

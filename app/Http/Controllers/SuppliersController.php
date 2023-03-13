@@ -32,7 +32,7 @@ class SuppliersController extends Controller
 
     protected function Create(Request $request)
     {
-        
+        //dd($request);
         $suppliers = $request->validate([
             'nit' => ['required', 'integer'],
             'name' => ['required', 'string'],
@@ -62,5 +62,22 @@ class SuppliersController extends Controller
 
         return view('Suppliers.Update', compact('supplier'));
     
+    }
+
+    public function Update(Request $request, $id){
+
+        $supplier = Suppliers::find($id);
+        $supplier->fill($request->all());
+        $supplier->save();
+        return redirect()->route('ReadUpdateSuppliers', $id)->with('success', 'Proveedor Actualizado con exito');
+    }
+
+    public function destroy($id){
+
+        $supplier = Suppliers::findOrFail($id);
+        if ($supplier->delete()) {
+            return response()->json(['success' => true]);
+        }
+        return response()->json(['success' => false]);
     }
 }
