@@ -81,3 +81,5 @@ Route::delete('DeleteSuppliers/{id}','App\Http\Controllers\SuppliersController@d
 //Entries
 //ruta para registrar una nueva entrada
 Route::get('/NewEntries','App\Http\Controllers\EntriesController@New')->name('NewEntries');
+Route::post('/SearchProducts','App\Http\Controllers\EntriesController@Search')->name('SearchProducts');
+Route::post('/AddProductMoment','App\Http\Controllers\EntriesController@add_to_session')->name('AddProductMoment');
