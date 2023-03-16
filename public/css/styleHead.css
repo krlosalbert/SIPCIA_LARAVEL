@@ -200,6 +200,7 @@ a.article:hover {
 
 #base2{
     background:  #f8f7f2;
+    
 }
 .update_Modal{
     background:  #f8cc50;
@@ -217,3 +218,13 @@ a.article:hover {
 .pagination li a {
     background-color:    #f69c16;
 }
+
+.table-responsive {
+    height: 200px;
+    overflow-x: auto;
+ }
+
+/* .table-scroll {
+    max-height: 10px;   // altura máxima de la tabla 
+    overflow-y: scroll; // habilita la barra de desplazamiento vertical 
+  } */

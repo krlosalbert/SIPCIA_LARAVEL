@@ -1,4 +1,4 @@
-function searchProducts(){ 
+/* function searchProducts(){ 
 
     var search= document.getElementById('search').value;
 
@@ -22,7 +22,7 @@ function searchProducts(){
         $('#ShowMsg').html(mensaje);
         }
     });
-}
+} */
 
 
 $(document).ready(function() {

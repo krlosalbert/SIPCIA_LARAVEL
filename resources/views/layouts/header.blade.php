@@ -1,12 +1,3 @@
-<?php
-
-    session_start();
-    if(empty($_SESSION['active'])){
-
-        header('location: /Login.php');
-    } 
-
-?>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="UTF-8">
@@ -18,25 +9,23 @@
         
         <!-- Fonts -->
         <link rel="dns-prefetch" href="//fonts.gstatic.com">
-        <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+        <link rel="stylesheet" href="{{ asset('css/fontsFamilyNunito.css') }}" >
         <link rel="stylesheet" href="{{ asset('css/bootstrap/bootstrap.min.css') }}"/>
         <link rel="stylesheet" href="{{ asset('css/styleHead.css') }}"/>
+
+        @yield('css')
     
         <!-- script utilizados para usar el menu lateral y poder incluir los items dentro otros -->
-        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+        <script src="{{ asset('js/jquery.js') }}"></script>
+        <script src="{{ asset('js/bootstrapMenu.js') }}"></script>
     
         <!-- esto es para accionar el modal -->
         <script src="{{ asset('js/bootstrap/bootstrap.bundle.min.js') }}"></script>
     
         <!-- scrip de las alertas -->
         <script src="{{ asset('js/sweetalert.js') }}"></script>
-        <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
         
-        <!-- el jquery y un archivo propio -->
-        <script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
-
-        <!-- Scripts -->
+       <!-- Scripts -->
         @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     </head>
     <body>
@@ -184,8 +173,11 @@
                         </div>
                     </div>
                 </nav>
+
                 @yield('content')
 
+                @yield('js')
+                
             </div>
         </div>
     </body>

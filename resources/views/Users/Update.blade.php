@@ -101,19 +101,11 @@
 
                 <div class="d-flex w-auto">
                     <div class="d-inline w-100 p-3">
-                        <label for="password">{{ __('Contraseña') }}</label>
-                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Digite su Contraseña">
-
-                        @error('password')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
+                        
                     </div>
                 
                     <div class="d-inline w-100 p-3">
-                        <label for="password-confirm">{{ __('Confirmar Contraseña') }}</label>
-                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Confirme su Contraseña">
+                       
                     </div>
 
                     <div class="d-inline w-100 p-3">
