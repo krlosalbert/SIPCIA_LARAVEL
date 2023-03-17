@@ -215,16 +215,23 @@ a.article:hover {
     text-align: center;
 }
 
-.pagination li a {
+/* .pagination li a {
     background-color:    #f69c16;
-}
+} */
 
-.table-responsive {
-    height: 200px;
+.table-responsive2 {
+    height: 357px;
     overflow-x: auto;
  }
 
-/* .table-scroll {
-    max-height: 10px;   // altura máxima de la tabla 
-    overflow-y: scroll; // habilita la barra de desplazamiento vertical 
-  } */
+.modal-header {
+background-color:#449dcc;
+}
+
+.modal-body {
+background-color: #fce492;
+}
+
+.modal-footer {
+background-color:#449dcc;
+}

@@ -12,7 +12,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link rel="stylesheet" href="{{ asset('css/fontsFamilyNunito.css') }}" >
-    <link rel="stylesheet" href="../css/styleHead.css"/>
+    <link rel="stylesheet" href="../css/styles.css"/>
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -43,7 +43,6 @@
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                             @endif
-
 
                         @else
                             <li class="nav-item dropdown">

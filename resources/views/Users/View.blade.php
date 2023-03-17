@@ -63,7 +63,8 @@
                 <script>
                         $(document).ready(function () {
                             $('#users').DataTable({
-                                'lengthMenu' : [[ 5, 10, 50, -1], [ 5, 10, 50, "All"]],
+                                'lengthMenu' : [[ 3, 6, 9, -1], [ 3, 6, 9, "All"]],
+                                'pageLength': 3,
                                 'language': { 
                                     "paginate": {
                                         "previous": "Anterior",

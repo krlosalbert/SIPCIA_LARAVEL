@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Products;
 use App\Models\Accounts;
+use App\Models\Suppliers;
 
 class EntriesController extends Controller
 {
@@ -17,37 +18,31 @@ class EntriesController extends Controller
     {
         $this->middleware('auth');
     }
-
+    
     public function New(Request $request)
     {
+        $suppliers = Suppliers::All();
+
         if(\Session::get('products')){
             $products = \Session::get('products');
         }else{
             $products = array();
         }
+        
+        return view('Entries.NewEntries', compact('products', 'suppliers') );
+    }
 
-        if(\Session::get('products_with_accounts')){
-            $products_with_accounts = \Session::get('products_with_accounts');
-        }else{
-            $products_with_accounts = array();
-        }
-
-        return view('Entries.NewEntries', compact('products_with_accounts', 'products') + ['x'=>0]);
+    public function Search(Request $request)
+    {
+        $search = $request->input('search');
+        $products_with_accounts = Products::select('products.*')
+                    ->where('name', 'LIKE', '%'.$search.'%')
+                    ->orWhere('brand', 'LIKE', '%'.$search.'%')
+                    ->orWhere('account', 'LIKE', '%'.$search.'%')
+                    ->get();
+        return view('Entries.table_products', compact('products_with_accounts'));
     }
     
-    public function Search(Request $request){
-        
-        $products_with_accounts = (object) Products::select('products.*', 'accounts.name as account_name')
-        ->join('accounts', 'products.account', '=', 'accounts.id')
-        ->where('products.name', 'like', "%$request->search%")
-        ->get();   
-
-        \Session::push('products_with_accounts', $products_with_accounts);
-        
-        return redirect('NewEntries')->with(['products_with_accounts' => $products_with_accounts, 'x' =>0 ]);
-      
-    }
-
     public function add_to_session(Request $request)
     {
         $searchs = (object) Products::select('products.*', 'accounts.name as account_name')
@@ -62,11 +57,31 @@ class EntriesController extends Controller
             'searchs' => $searchs->toarray()
 
         );
-    
         \Session::push('products', $products);
+        //dd(\Session::get('products'));
         
         return redirect('NewEntries')->with([ 'x' =>0 ]);
 
     }
-    
+
+
+    public function eliminarDato(Request $request)
+    {
+        $indice = $request->input('indice');
+
+        // Obtener la lista de productos de la sesión
+        $productos = session('products');
+
+        // Eliminar el producto con el índice dado
+        unset($productos[$indice]);
+
+        // Guardar la lista actualizada en la sesión
+        session(['products' => $productos]);
+
+        return redirect()->back()->with(['success' => true]);
+
+        
+         
+
+    }
 }

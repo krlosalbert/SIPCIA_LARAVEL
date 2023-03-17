@@ -12,7 +12,6 @@
                         @csrf
                         <div class="d-flex w-auto">
                             <div class="d-inline w-100 p-3">
-                       
                                 <label for="name">{{ __('Nombre del Elemento') }}</label>
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Escribe el nombre del producto">
 
