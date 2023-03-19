@@ -97,7 +97,7 @@
                                 <a href="{{ route('NewEntries') }}">Nueva Entrada</a>
                             </li>
                             <li>              
-                                <a href="../Sales/Orders.php">Consultar Entradas</a>
+                                <a href="{{ route('ViewEntries') }}">Consultar Entradas</a>
                             </li>
                         </ul>
                     </li>

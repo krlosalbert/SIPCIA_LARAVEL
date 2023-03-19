@@ -11,16 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('suppliers', function (Blueprint $table) {
-            $table->id();
-            $table->bigInteger('nit')->unique();
-            $table->string('name', 50);
-            $table->string('city', 50);
-            $table->string('address', 50);
-            $table->bigInteger('phone');
-            $table->string('email', 50)->unique();
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('suppliers')) {
+            Schema::create('suppliers', function (Blueprint $table) {
+                $table->id();
+                $table->bigInteger('nit')->unique();
+                $table->string('name', 50);
+                $table->string('city', 50);
+                $table->string('address', 50);
+                $table->bigInteger('phone');
+                $table->string('email', 50)->unique();
+                $table->timestamps();
+            });
+        }
     }
 
     /**
@@ -28,6 +30,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('suppliers');
+        if (!Schema::hasTable('suppliers')) {
+            Schema::dropIfExists('suppliers');
+        }
     }
 };

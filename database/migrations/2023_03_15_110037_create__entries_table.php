@@ -13,7 +13,13 @@ return new class extends Migration
     {
         Schema::create('entries', function (Blueprint $table) {
             $table->id();
+            $table->date('date');
+            $table->integer('supplier_id');
+            $table->integer('invoice_id');
             $table->timestamps();
+
+            //$table->foreign('supplier_id')->references('id')->on('suppliers');
+            //$table->foreign('invoice_id')->references('id')->on('invoices');
         });
     }
 

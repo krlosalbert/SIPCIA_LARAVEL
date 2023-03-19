@@ -69,9 +69,27 @@ Route::put('/UpdateSuppliers/{id}','App\Http\Controllers\SuppliersController@Upd
 Route::delete('DeleteSuppliers/{id}','App\Http\Controllers\SuppliersController@destroy')->name('DeleteSuppliers');
 
 //Entries
-//ruta para registrar una nueva entrada
-Route::get('/NewEntries','App\Http\Controllers\EntriesController@New')->name('NewEntries');
-Route::get('/SearchProducts','App\Http\Controllers\EntriesController@Search')->name('SearchProducts');
-Route::post('/AddProductMoment','App\Http\Controllers\EntriesController@add_to_session')->name('AddProductMoment');
+//ruta para ver las entradas registradas
+Route::get('/ViewEntries','App\Http\Controllers\EntriesController@View')->name('ViewEntries');
+//ruta para ver el detalle de la entrada
+Route::post('/details_entries','App\Http\Controllers\EntriesController@View_products')->name('details_entries');
 
-Route::post('/eliminarDato','App\Http\Controllers\EntriesController@eliminarDato')->name('eliminarDato');
+//inicio rutas para registrar una nueva entrada
+    //ruta para visualizar el formulario y las tablas para el registro de la nueva entrada
+    Route::get('/NewEntries','App\Http\Controllers\EntriesController@New')->name('NewEntries');
+    //ruta para visualizar los productos para seleccionar productos para el registro
+    Route::get('/SearchProducts','App\Http\Controllers\EntriesController@Search')->name('SearchProducts');
+    //ruta para añadir los productos a guardar
+    Route::post('/AddProductMoment','App\Http\Controllers\EntriesController@add_to_session')->name('AddProductMoment');
+    //ruta para hacer una eliminacion previa en caso de error antes de guardar
+    Route::post('/deleteProduct','App\Http\Controllers\EntriesController@deleteProduct')->name('deleteProduct');
+    //ruta para hacer el registro en la db
+    Route::post('/CreateEntries','App\Http\Controllers\EntriesController@Create')->name('create_entries');
+//fin de las rutas de registro de nueva entrada
+
+//ruta para el formulario de edicion de entradas
+Route::get('/ReadUpdateEntries/{id}','App\Http\Controllers\EntriesController@ReadUpdate')->name('ReadUpdateEntries');
+
+//ruta para eliminar entradas
+Route::delete('DeleteEntries/{id}','App\Http\Controllers\EntriesController@destroy')->name('DeleteEntries');
+

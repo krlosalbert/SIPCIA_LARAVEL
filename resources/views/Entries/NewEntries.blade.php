@@ -20,7 +20,7 @@
                                 <button class="btn btn-primary" id="buscar-btn" data-bs-toggle="modal" data-bs-target="#searchs-products">Buscar</button>
                             </div>  
                         </div>
-                        <form action="{{ route('SearchProducts') }}" method="POST">
+                        <form action="{{ route('create_entries') }}" method="POST">
                             @csrf
                             <div class="d-flex w-auto">
                                 <div class="d-inline w-100 p-2">
@@ -31,7 +31,7 @@
                             <div class="d-flex w-auto">
                                 <div class="d-inline w-100 p-2">
                                     <label for="supplier"><b>Proveedor</b></label><br>
-                                    <select name="role" id="role" class="form-control">
+                                    <select name="supplier" id="role" class="form-control">
                                         <option value="">Seleccione</option>
                                         @foreach($suppliers as $supplier)
                                             <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
@@ -42,7 +42,12 @@
                             <div class="d-flex w-auto">
                                 <div class="d-inline w-100 p-2">
                                     <label for="invoice"><b>Factura</b></label>
-                                    <input type="text" class="form-control" id="invoice" name="invoice" placeholder="Ingrese el numero de factura" value="{{ old('invoice') }}">
+                                    <select name="invoice" id="role" class="form-control">
+                                        <option value="">Seleccione</option>
+                                        @foreach($invoices as $invoice)
+                                            <option value="{{ $invoice->id }}">{{ $invoice->number }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="row mb-0">
@@ -81,15 +86,15 @@
                                                 $total = 0;
                                             @endphp
                                             @foreach ($products as $pro)
-                                                @foreach ($pro->searchs as $search)
+                                                @foreach ($pro['searchs'] as $search)
                                                     <tbody>
                                                         <tr>
                                                             <td class="text-center lowercase">{{ $search['name'] }}</td>
-                                                            <td class="text-center lowercase">{{ $pro->amount }}</td>
+                                                            <td class="text-center lowercase">{{ $pro['amount'] }}</td>
                                                             <td class="text-center lowercase">$ {{ number_format($search['price'], 0, ',', '.') }}</td>
                                                             <td class="text-center lowercase">
                                                                 @php
-                                                                    $amount = $pro->amount;
+                                                                    $amount = $pro['amount'];
                                                                     $price = $search['price'];
                                                                     $total = $amount*$price;
                                                                 @endphp
@@ -101,7 +106,7 @@
                                                                     $posicion = array_search($pro, $products); 
 
                                                                 @endphp
-                                                                <form action="{{ route('eliminarDato') }}" method="POST">
+                                                                <form action="{{ route('deleteProduct') }}" method="POST">
                                                                     @csrf
                                                                     <input type="hidden" name="indice" value="{{ $posicion }}"> <!-- aquí indicas el índice del elemento que quieres eliminar -->
                                                                     <button type="submit">
@@ -169,7 +174,14 @@
                 <script src="{{ asset('js/ScriptEntries/SearchProducts.js') }}"></script>
                 @if(session('success'))
                     <script>
-                        swal("Listo!", "producto eliminado con Exito!", "success")
+                        swal("Listo!", "Entrada Guardada con Exito!", "success")
+                            .then((value) => {
+                        }) 
+                    </script>
+                @endif
+                @if(session('delete'))
+                    <script>
+                        swal("Listo!", "Producto eliminado con Exito!", "success")
                             .then((value) => {
                         }) 
                     </script>

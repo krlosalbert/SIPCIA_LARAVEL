@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Entries extends Model
+class entries_products extends Model
 {
     use HasFactory;
-    protected $table = 'entries';
+    protected $table = 'entries_products';
     protected $primaryKey = 'id';
     
 
@@ -18,9 +18,9 @@ class Entries extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'date',
-        'supplier_id',
-        'invoice_id',
+        'amount',
+        'entry_id',
+        'product_id',
 
     ];
 }

@@ -1,14 +1,14 @@
 $(document).ready(function() {
     $('#buscar-btn').click(function() {
-    var search = $('#search').val();
-    $.ajax({
-        type: "GET",
-        url: "/SearchProducts",
-        data: { search: search },
-        success: function(response) {
-        $('#searchs-products #body').html(response);
-        }
-    });
+        var search = $('#search').val();
+        $.ajax({
+            type: "GET",
+            url: "/SearchProducts",
+            data: { search: search },
+            success: function(response) {
+            $('#searchs-products #body').html(response);
+            }
+        });
     });
 });
 

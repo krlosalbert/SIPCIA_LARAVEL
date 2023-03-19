@@ -11,14 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('products', function (Blueprint $table) {
-            $table->id();
-            $table->string('name', 100);
-            $table->string('brand', 50);
-            $table->integer('account');
-            $table->decimal('price');
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('products')) {
+            Schema::create('products', function (Blueprint $table) {
+                $table->id();
+                $table->string('name', 100);
+                $table->string('brand', 50);
+                $table->decimal('price');
+                $table->integer('account_id')->unsigned();
+                $table->timestamps();
+
+                $table->foreign('account_id')->references('id')->on('accounts');
+            });
+        }
     }
 
     /**
@@ -26,6 +30,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('products');
+        if (!Schema::hasTable('products')) {
+            Schema::dropIfExists('products');
+        }
     }
 };
