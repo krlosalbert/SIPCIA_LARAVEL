@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('entries', function (Blueprint $table) {
             $table->id();
             $table->date('date');
+            $table->decimal('total');
             $table->integer('supplier_id');
             $table->integer('invoice_id');
             $table->timestamps();

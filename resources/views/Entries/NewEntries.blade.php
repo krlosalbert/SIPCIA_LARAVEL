@@ -84,10 +84,11 @@
                                             </thead>
                                             @php
                                                 $total = 0;
+                                                $suma_total = 0;
                                             @endphp
-                                            @foreach ($products as $pro)
-                                                @foreach ($pro['searchs'] as $search)
-                                                    <tbody>
+                                            <tbody>
+                                                @foreach ($products as $pro)
+                                                    @foreach ($pro['searchs'] as $search)
                                                         <tr>
                                                             <td class="text-center lowercase">{{ $search['name'] }}</td>
                                                             <td class="text-center lowercase">{{ $pro['amount'] }}</td>
@@ -97,6 +98,7 @@
                                                                     $amount = $pro['amount'];
                                                                     $price = $search['price'];
                                                                     $total = $amount*$price;
+                                                                    $suma_total += $amount*$price;
                                                                 @endphp
                                                                 $ {{ number_format($total, 0, ',', '.')}}
                                                             </td>
@@ -118,9 +120,15 @@
                                                                 </form>
                                                             </td>
                                                         </tr>
-                                                    </tbody>
+                                                    @endforeach
                                                 @endforeach
-                                            @endforeach
+                                                <tr>
+                                                    <td class="text-center lowercase"></td>
+                                                    <td class="text-center lowercase"></td>
+                                                    <td class="text-center lowercase"><b>TOTAL</b></td>
+                                                    <td class="text-center lowercase"><b>$ {{ number_format($suma_total, 0, ',', '.') }}</b></td>
+                                                </tr>
+                                            </tbody>
                                         </table>
                                     </div> 
                                 </div>

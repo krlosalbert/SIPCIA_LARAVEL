@@ -17,6 +17,7 @@
                         <th class="text-center" scope="col">Fecha</th>
                         <th class="text-center" scope="col">Proveedor</th>
                         <th class="text-center" scope="col">Factura</th>
+                        <th class="text-center" scope="col">Cuenta</th>
                         <th class="text-center" scope="col">Accion</th>
                     </tr>
                 </thead>
@@ -27,9 +28,10 @@
                     @foreach ($entries as $entry)
                         <tr>
                             <td>{{ $x += 1; }}</td>
-                            <td class="text-center">{{ $entry['date'] }}</td>
+                            <td class="text-center">{{ $entry['entry_date'] }}</td>
                             <td class="text-center">{{ $entry['supplier_name'] }}</td>
                             <td class="text-center">{{ $entry['invoice_number'] }}</td>
+                            <td class="text-center">{{ $entry['account_name'] }}</td>
                             <td class="text-center">
                                 <!-- boton trigger modal para ver detalles de productos -->
                                 <button class="btn btn-warning details-btn" data-bs-toggle="modal" data-bs-target="#details-entries" data-id="{{ $entry['entry_id'] }}">
@@ -64,13 +66,13 @@
 
             <!-- Modal para mostrar productos-->
             <div class="modal fade" id="details-entries" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header ">
+                <div class="modal-dialog  modal-lg text-center">
+                    <div class="modal-content d-flex justify-content-center align-items-center">
+                        <div class="modal-header w-100">
                             <h5 class="modal-title" id="exampleModalLabel"><b>Productos</b></h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-body" id="body">
+                        <div class="modal-body w-100" id="body">
 
                             <!-- El contenido de la tabla se insertará aquí -->
 

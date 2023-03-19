@@ -89,6 +89,8 @@ Route::post('/details_entries','App\Http\Controllers\EntriesController@View_prod
 
 //ruta para el formulario de edicion de entradas
 Route::get('/ReadUpdateEntries/{id}','App\Http\Controllers\EntriesController@ReadUpdate')->name('ReadUpdateEntries');
+//ruta para editar a las entradas
+Route::put('/update_entries/{id}','App\Http\Controllers\SuppliersController@Update')->name('update_entries');
 
 //ruta para eliminar entradas
 Route::delete('DeleteEntries/{id}','App\Http\Controllers\EntriesController@destroy')->name('DeleteEntries');

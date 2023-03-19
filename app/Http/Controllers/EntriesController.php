@@ -25,10 +25,19 @@ class EntriesController extends Controller
     
     public function View()
     {
-        $entries = entries::select('*', 'entries.id as entry_id', 'suppliers.name as supplier_name', 'invoices.number as invoice_number')
+        $entries = entries::select(
+                                    '*', 
+                                    'entries.id as entry_id',
+                                    'entries.date as entry_date',
+                                    'suppliers.name as supplier_name', 
+                                    'invoices.number as invoice_number',
+                                    'accounts.name as account_name'
+                                )
         ->join('suppliers', 'entries.supplier_id', '=', 'suppliers.id')
         ->join('invoices', 'entries.invoice_id', '=', 'invoices.id')
+        ->join('accounts', 'invoices.account_id', '=', 'accounts.id')
         ->get();
+
         return view('Entries.view', compact('entries'));
     }
 
@@ -41,14 +50,20 @@ class EntriesController extends Controller
                                                 'products.name as products_name', 
                                                 'products.brand as products_brand',
                                                 'products.account as products_account',
-                                                'products.price as products_price'
+                                                'products.price as products_price',
+                                                'accounts.name as products_account_name'
                                             )
         ->join('products', 'entries_products.product_id', '=', 'products.id')
+        ->join('accounts', 'products.account', '=', 'accounts.id')
         ->where('entry_id', '=', $search)
         ->get();
 
+        $total = collect($products)->sum(function($product) {
+            return $product['price'];
+        });
+
         //dd($products);
-        return view('Entries.Details_entries', compact('products'));
+        return view('Entries.Details_entries', compact('products', 'total'));
     }
 
 
@@ -160,8 +175,29 @@ class EntriesController extends Controller
         // Redireccionar a la vista de nuevas entradas
         return redirect()->route('NewEntries')->with('success', 'entrada Guardada  con exito');
 
+    }
 
+    public function ReadUpdate(Request $request)
+    {
+        $search = $request->id;
 
+        $entries = entries::select('entries.id as entry_id', 'entries.date as entry_date', 'suppliers.name as supplier_name', 'invoices.number as invoice_number')
+        ->join('suppliers', 'entries.supplier_id', '=', 'suppliers.id')
+        ->join('invoices', 'entries.invoice_id', '=', 'invoices.id')
+        ->where('entries.id', '=', $search)
+        ->get();
 
+        foreach($entries as $entry)
+        {
+            
+        }
+
+        $suppliers = Suppliers::All();
+
+        $invoices = invoices::All();
+    
+        //dd($entry);
+
+        return view('Entries.Update', compact('entry', 'suppliers', 'invoices') );
     }
 }
