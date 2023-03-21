@@ -3,7 +3,7 @@
 @section('content')
     <div class="container" >
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="card d-flex justify-content-around flex-wrap" id="base">
                     <div class="card-header" id="head_users">
                         <h3>
@@ -61,7 +61,7 @@
             </div>
 
             @if(!empty($products))
-                <div class="col-md-6">
+                <div class="col-md-8">
                     <div class="container">
                         <div class="card d-flex justify-content-around flex-wrap" id="base">
                             <div class="card-header" id="head_users">
@@ -72,7 +72,7 @@
                             <div class="card-body">
                                 <div class="overflow-auto">
                                     <div class="table-responsive2">
-                                        <table class="table-sm" id="tbl-entries">
+                                        <table class="table table-center" id="tbl-entries">
                                             <thead class="thead-dark">
                                                 <tr>
                                                     <th class="text-center lowercase" scope="col">Nombre del Producto</th>
@@ -90,7 +90,7 @@
                                                 @foreach ($products as $pro)
                                                     @foreach ($pro['searchs'] as $search)
                                                         <tr>
-                                                            <td class="text-center lowercase">{{ $search['name'] }}</td>
+                                                            <td class="text-center lowercase">{{ $search['product_name'] }}</td>
                                                             <td class="text-center lowercase">{{ $pro['amount'] }}</td>
                                                             <td class="text-center lowercase">$ {{ number_format($search['price'], 0, ',', '.') }}</td>
                                                             <td class="text-center lowercase">
@@ -124,9 +124,8 @@
                                                 @endforeach
                                                 <tr>
                                                     <td class="text-center lowercase"></td>
-                                                    <td class="text-center lowercase"></td>
                                                     <td class="text-center lowercase"><b>TOTAL</b></td>
-                                                    <td class="text-center lowercase"><b>$ {{ number_format($suma_total, 0, ',', '.') }}</b></td>
+                                                    <td class="text-center lowercase" colspan="3"><b>$ {{ number_format($suma_total, 0, ',', '.') }}</b></td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -140,13 +139,13 @@
 
             <!-- Modal para mostrar productos-->
             <div class="modal fade" id="searchs-products" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header ">
+                <div class="modal-dialog  modal-lg text-center">
+                    <div class="modal-content d-flex justify-content-center align-items-center">
+                        <div class="modal-header w-100">
                             <h5 class="modal-title" id="exampleModalLabel"><b>Productos</b></h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-body" id="body">
+                        <div class="modal-body w-100" id="body">
 
                             <!-- El contenido de la tabla se insertará aquí -->
 
@@ -179,7 +178,7 @@
             </div>
         
             @section('js')
-                <script src="{{ asset('js/ScriptEntries/SearchProducts.js') }}"></script>
+                <script src="{{ asset('js/ScriptEntries/entries.js') }}"></script>
                 @if(session('success'))
                     <script>
                         swal("Listo!", "Entrada Guardada con Exito!", "success")

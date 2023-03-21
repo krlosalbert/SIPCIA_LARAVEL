@@ -88,10 +88,23 @@ Route::post('/details_entries','App\Http\Controllers\EntriesController@View_prod
 //fin de las rutas de registro de nueva entrada
 
 //ruta para el formulario de edicion de entradas
-Route::get('/ReadUpdateEntries/{id}','App\Http\Controllers\EntriesController@ReadUpdate')->name('ReadUpdateEntries');
+Route::post('/ReadUpdateEntries','App\Http\Controllers\EntriesController@ReadUpdate')->name('ReadUpdateEntries');
 //ruta para editar a las entradas
-Route::put('/update_entries/{id}','App\Http\Controllers\SuppliersController@Update')->name('update_entries');
-
+Route::put('/update_entries/{id}','App\Http\Controllers\EntriesController@Update')->name('update_entries');
 //ruta para eliminar entradas
 Route::delete('DeleteEntries/{id}','App\Http\Controllers\EntriesController@destroy')->name('DeleteEntries');
+
+//INVOICES
+//ruta para ver las facturas
+Route::get('/ViewInvoices','App\Http\Controllers\invoicesController@View')->name('ViewInvoices');
+//ruta para ver el formulario de creacion de una nueva factura
+Route::get('/NewInvoice','App\Http\Controllers\invoicesController@Form')->name('NewInvoice');
+//ruta para crear una nueva factura
+Route::post('/CreateInvoices','App\Http\Controllers\invoicesController@Create')->name('CreateInvoices');
+//ruta para el formulario de edicion de las facturas
+Route::get('/ReadUpdateInvoices/{id}','App\Http\Controllers\invoicesController@ReadUpdate')->name('ReadUpdateInvoices');
+//ruta para editar a las facturas
+Route::put('/update_invoices/{id}','App\Http\Controllers\invoicesController@Update')->name('update_invoices');
+//ruta para eliminar factura
+Route::delete('DeleteInvoices/{id}','App\Http\Controllers\invoicesController@destroy')->name('DeleteInvoices');
 

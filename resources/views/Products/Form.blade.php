@@ -45,7 +45,6 @@
                                         <option value="{{ $account->id }}">{{ $account->name }}</option>
                                     @endforeach
                                 </select>
-                                </select>
                                 @error('account')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
