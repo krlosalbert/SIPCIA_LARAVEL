@@ -112,7 +112,7 @@
                                 <a href="#">Nueva Salida</a>
                             </li>
                             <li>
-                                <a href="#">Consultar</a>
+                                <a href="{{ route('ViewOutputs') }}">Consultar</a>
                             </li>
                         </ul>
                     </li>

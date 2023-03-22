@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class entries_products extends Model
+class outputs_products extends Model
 {
     use HasFactory;
-    protected $table = 'entries_products';
+    protected $table = 'outputs_products';
     protected $primaryKey = 'id';
     
 
@@ -19,16 +19,14 @@ class entries_products extends Model
      */
     protected $fillable = [
         'amount',
-        'entry_id',
+        'output_id',
         'product_id',
 
     ];
 
     //definir la relación con la tabla principal
-    public function entries()
+    public function output()
     {
-        return $this->belongsTo(entries::class, 'entry_id');
+        return $this->belongsTo(output::class, 'output_id');
     }
-
-
 }

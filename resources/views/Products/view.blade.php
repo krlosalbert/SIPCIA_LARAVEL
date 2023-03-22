@@ -19,6 +19,7 @@
                             <th class="text-center" scope="col">Marca</th>
                             <th class="text-center" scope="col">Cuenta</th>
                             <th class="text-center" scope="col">Cantidad</th>
+                            <th class="text-center" scope="col">Valor Unitario</th>
                             <th class="text-center" scope="col">Accion</th>
                         </tr>
                     </thead>
@@ -29,6 +30,7 @@
                             <td class="text-center">{{ $product->name }}</td>
                             <td class="text-center">{{ $product->brand }}</td>
                             <td class="text-center">{{ $product->account_name }}</td>
+                            <td class="text-center">{{ $product->amount }}</td>
                             <td class="text-center">$ {{ $product->price }}</td>
                             <td class="text-center">
                                 <!-- Button trigger modal -->

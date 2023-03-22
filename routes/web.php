@@ -108,3 +108,7 @@ Route::put('/update_invoices/{id}','App\Http\Controllers\invoicesController@Upda
 //ruta para eliminar factura
 Route::delete('DeleteInvoices/{id}','App\Http\Controllers\invoicesController@destroy')->name('DeleteInvoices');
 
+//OUTPUTS
+//ruta para ver las salidas
+Route::get('/ViewOutputs','App\Http\Controllers\outputsController@View')->name('ViewOutputs');
+

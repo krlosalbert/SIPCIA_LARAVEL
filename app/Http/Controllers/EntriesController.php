@@ -221,9 +221,12 @@ class EntriesController extends Controller
     }
 
     //metodo para eliminar una entrada
-    public function destroy($id){
+    public function destroy($id)
+    {
         //instancio la clase para traer la entrada a eliminar
         $entry = entries::findOrFail($id);
+        //eliminar el registro relacionado de la tabla secundaria
+        $entry->entries_products()->delete();
         //pregunto su fue exitoso la eliminacion
         if ($entry->delete()) {
             //si es correcto mando un mensaje de exito
@@ -232,5 +235,4 @@ class EntriesController extends Controller
         //de lo contrario mando un mensaje falso
         return response()->json(['success' => false]);
     }
-
 }

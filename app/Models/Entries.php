@@ -23,4 +23,10 @@ class Entries extends Model
         'invoice_id',
 
     ];
+
+    //definir la relación con la tabla secundaria
+    public function entries_products()
+    {
+        return $this->hasMany(entries_products::class, 'entry_id');
+    }
 }
