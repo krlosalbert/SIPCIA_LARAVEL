@@ -109,7 +109,7 @@
                         </a>
                         <ul class="dropdown-menu" role="menu">     
                             <li>
-                                <a href="#">Nueva Salida</a>
+                                <a href="{{ route('NewOutputs') }}">Nueva Salida</a>
                             </li>
                             <li>
                                 <a href="{{ route('ViewOutputs') }}">Consultar</a>

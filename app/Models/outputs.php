@@ -20,7 +20,6 @@ class outputs extends Model
     protected $fillable = [
         'date',
         'number',
-        'product_id',
         'subaccount_id',
         'department_id',
         'employee_id',

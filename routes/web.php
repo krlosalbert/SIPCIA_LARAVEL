@@ -112,3 +112,14 @@ Route::delete('DeleteInvoices/{id}','App\Http\Controllers\invoicesController@des
 //ruta para ver las salidas
 Route::get('/ViewOutputs','App\Http\Controllers\outputsController@View')->name('ViewOutputs');
 
+//inicio rutas para registrar una nueva salida
+    //ruta para visualizar el formulario y las tablas para el registro de la nueva salida
+    Route::get('/NewOutputs','App\Http\Controllers\outputsController@New')->name('NewOutputs');
+    //ruta para añadir los productos a guardar en la salida
+    Route::post('/AddProductMoment_output','App\Http\Controllers\outputsController@add_to_session')->name('AddProductMoment_output');
+    //ruta para hacer una eliminacion previa en caso de error antes de guardar
+    Route::post('/deleteProduct_outputs','App\Http\Controllers\outputsController@deleteProduct')->name('deleteProduct_outputs');
+    //ruta para hacer el registro en la db
+    Route::post('/Create_outputs','App\Http\Controllers\outputsController@Create')->name('create_outputs');
+//fin de las rutas de registro de nueva salida
+
